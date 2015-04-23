@@ -51,6 +51,8 @@ angular.module('weatherApp', ['ngRoute'])
   // Controller for weather display
   .controller('WeatherController', function($q, $location, $scope, $routeParams, Location, Weather) {
 
+    $scope.city = null
+    
     // Get the zip code from either the URL param or the
     var locationDefer = $q.defer()
     if (!$routeParams.zipcode) {
