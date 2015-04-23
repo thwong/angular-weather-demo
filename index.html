@@ -1,1 +1,65 @@
-Hello World
+<!doctype html>
+<html ng-app="weatherApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather demo with angular</title>
+    <!-- Include the bootstrap, and font-awesome framework -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <!-- Include the angular framework and its routing and resource plugins -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+    <!-- Include the source files for this app -->
+    <script src="scripts/app.js"></script>
+
+  </head>
+  <body>
+
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">Weather</a>
+        </div>
+        <div class="collapse navbar-collapse">
+
+        </div>
+      </div>
+    </nav>
+    <!-- End Top Navigation -->
+
+    <!-- View Placeholder for Angular routing -->
+    <div class="container" ng-view>
+
+    </div>
+    <!-- End view Placeholder -->
+
+    <!-- Inline template.  Should be broken down into individual HTML files in real app -->
+    <script type="text/ng-template" id="weather.html">
+      <div ng-show="city">
+        <h1>{{city}}: {{temperatue | number:0}}&#176;C</h1>
+        <div class="m-t-10" ng-hide="isSearchFormShown">
+          <a href="" ng-click="isSearchFormShown=true">Want weather for a different city?</a>
+        </div>
+        <form class="row m-t-10" ng-submit="zipEntered()" ng-show="isSearchFormShown">
+          <div class="col-xs-12 col-sm-4">
+          <div class="form-group">
+            <input id="zipcode" ng-model="zip" placeholder="Enter the ZIP code" type="text" pattern="\d{5,5}" title="Please enter a valid ZIP code" class="form-control">
+          </div>
+          <div class="m-t-5"><button class="btn btn-primary" type="submit">Search</button></div>
+        </form>
+      </div>
+
+      <div ng-hide="city">
+        <h1>Getting weather information <i class="fa fa-spinner fa-spin"></i></h1>
+      </div>
+
+      </form>
+    </script>
+
+  </body>
+</html>
